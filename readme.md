@@ -1,4 +1,4 @@
-##Proje 0 ##
+##Proje 0##
 
 ###Geliştiriciler###
 -Samet ATABAŞ
