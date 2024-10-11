@@ -1,5 +1,4 @@
-##Proje 0##
+# Proje 0
 
-###Geliştiriciler###
--Samet ATABAŞ
--Ahmet ATABAŞ
+## Geliştiriciler
+- Samet ATABAŞ
