@@ -7,6 +7,6 @@
 </head>
 <body>
     <h1>Proje 0</h1>
-    <h2>Admin Admin Sayfası</h2>
+    <h2>Admin sayfası</h2>
 </body>
 </html>
