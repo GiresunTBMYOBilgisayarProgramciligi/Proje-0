@@ -14,7 +14,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="/admin/?p=profile" class="d-block">Alexander Pierce</a>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="index.php?p=new_user" class="nav-link <?= ($page == 'new_user') ? 'active' : ''; ?>">
-                                <i class="far fa-user-plus nav-icon"></i>
+                                <i class="fa fa-user-plus nav-icon"></i>
                                 <p>Yeni Ekle</p>
                             </a>
                         </li>
