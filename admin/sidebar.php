@@ -25,7 +25,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open"> <!-- menu-open sınıfı dropdown menünün açık olmasını sağlıyor-->
                     <a href="#" class="nav-link <?= (strpos($page, 'user') !== false) ? 'active' : ''; ?>"> <!-- sayfa user kelimesini içeriyorsa ektif olur-->
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Kullanıcı İşlemleri
                             <i class="right fas fa-angle-left"></i>
@@ -34,13 +34,13 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="index.php?p=user_list" class="nav-link <?= ($page == 'user_list') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-address-book nav-icon"></i>
                                 <p>Kullanıcı Listesi</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="index.php?p=new_user" class="nav-link <?= ($page == 'new_user') ? 'active' : ''; ?>">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="far fa-user-plus nav-icon"></i>
                                 <p>Yeni Ekle</p>
                             </a>
                         </li>
