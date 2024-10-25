@@ -8,5 +8,7 @@
 <body>
     <h1>Proje 0</h1>
     <h2>Admin sayfası</h2>
+    <a href="/admin/index.php">Admin paneline gitmek için tıklayın</a>
+    <a href="admin/index.php">Admin paneline gitmek için tıklayın</a>
 </body>
 </html>
