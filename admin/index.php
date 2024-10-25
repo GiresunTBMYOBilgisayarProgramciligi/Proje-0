@@ -30,9 +30,8 @@ $page = isset($_GET['p']) ? htmlspecialchars($_GET['p']) : 'dashboard';
 
     include_once "sidebar.php";
     // Dinamik içerik yükleme
-    $allowed_pages = ['dashboard', 'settings', 'users', 'profile', 'user_list']; // Geçerli sayfalar
     $content_file = "pages/{$page}.php";
-    if (in_array($page, $allowed_pages) && file_exists($content_file)) {
+    if (file_exists($content_file)) {
       include_once $content_file;
     } else {
       include_once "pages/404.php"; // Sayfa bulunamazsa 404 sayfası göster
