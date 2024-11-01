@@ -1028,6 +1028,7 @@ h3 {
   font-family: "Poppins", sans-serif;
   position: relative;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
