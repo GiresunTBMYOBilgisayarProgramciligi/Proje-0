@@ -44,7 +44,7 @@
                                     <p><span>+880166 253 232</span> <span>info@domain.com</span></p>
                                 </div>
                                 <div class="text_wrap">
-                                    <p><a href="#"> <i class="ti-user"></i>  Login</a> <a href="#">Register</a></p>
+                                    <p><a href="/admin"> <i class="ti-user"></i>  Login</a> <a href="/admin">Register</a></p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                     <div class="main-menu  d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a  href="index.html">home</a></li>
+                                                <li><a  href="/">home</a></li>
                                                 <li><a href="Courses.html">Courses</a></li>
                                                 <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                                     <ul class="submenu">
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="Appointment">
                                         <div class="book_btn d-none d-lg-block">
-                                            <a data-scroll-nav='1' href="#">Apply NOw</a>
+                                            <a  href="/admin">Yönetim Paneli</a>
                                         </div>
                                     </div>
                                 </div>
