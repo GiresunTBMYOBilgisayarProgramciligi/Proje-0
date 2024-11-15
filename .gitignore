@@ -12,3 +12,5 @@
 *.vsix
 
 App/config.php
+
+.idea
