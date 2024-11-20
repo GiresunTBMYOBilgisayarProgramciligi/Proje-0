@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Education</title>
+    <title>Tirebolu Mehmet Bayrak MYO</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,7 +44,7 @@
                                     <p><span>+880166 253 232</span> <span>info@domain.com</span></p>
                                 </div>
                                 <div class="text_wrap">
-                                    <p><a href="/admin"> <i class="ti-user"></i>  Login</a> <a href="/admin">Register</a></p>
+                                    <p><a href="/admin"> <i class="ti-user"></i>  Giriş</a> <a href="/admin">Kayıt Ol</a></p>
                                 </div>
                             </div>
                         </div>
@@ -67,18 +67,18 @@
                                     <div class="main-menu  d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a  href="/">home</a></li>
-                                                <li><a href="Courses.html">Courses</a></li>
-                                                <li><a">blog <i class="ti-angle-down"></i></a>
+                                                <li><a  href="/">Ana Sayfa</a></li>
+                                                <li><a href="Courses.html">Bölümlerimiz</a></li>
+                                                <li><a">Haberler <i class="ti-angle-down"></i></a>
                                                     <ul class="submenu">
                                                         <li><a href="blog.html">blog</a></li>
                                                         <li><a href="single-blog.html">single-blog</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a>pages <i class="ti-angle-down"></i></a>
+                                                <li><a>Sayfalar <i class="ti-angle-down"></i></a>
                                                     <ul class="submenu">
-                                                        <li><a href="Event.html">Event</a></li>
-                                                        <li><a href="event_details.html">Event Details</a></li>
+                                                        <li><a href="Event.html">Etkinlikler</a></li>
+                                                        <li><a href="event_details.html">Etkinlik Detayı</a></li>
                                                         <li><a href="Admissions.html">Admissions</a></li>
                                                         <li><a href="elements.html">elements</a></li>
                                                     </ul>
