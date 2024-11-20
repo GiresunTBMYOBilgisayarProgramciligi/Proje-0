@@ -79,11 +79,11 @@
                                                     <ul class="submenu">
                                                         <li><a href="Event.html">Event</a></li>
                                                         <li><a href="event_details.html">Event Details</a></li>
-                                                        <li><a href="Admissions.html">Admissions</a></li>
-                                                        <li><a href="elements.html">elements</a></li>
+                                                        <li><a href="Admissions.html">Kayıt</a></li>
+                                                        <li><a href="elements.html">Elemanlar</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="contact.html">İletişim</a></li>
                                             </ul>
                                         </nav>
                                     </div>
