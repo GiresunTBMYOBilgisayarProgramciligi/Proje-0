@@ -40,9 +40,9 @@ class userController
      * todo düzenlenecek
      * @return mixed|null
      */
-    public function getCurrentUserId()
+    public function getCurrentUser()
     {
-        return $this->getUser()->id;
+        return $this->getUser($_COOKIE["tmyo_user_cookie"]);
     }
 
     /**
@@ -127,29 +127,30 @@ class userController
     }
 
     /**todo düzenlenecek
-     * @return User|false
+     * @return true|false
      */
     public function isLoggedIn()
     {
-        if (isset($_COOKIE[Config::LOGIN_COOKIE_NAME])) return new User($_COOKIE[Config::LOGIN_COOKIE_NAME]); else
+        if (isset($_COOKIE["tmyo_user_cookie"])) return true; else
             return false;
     }
 
     /**
-     *todo düzenlenecek
-     * @param $arr
-     * @return User
-     * @throws \Exception
+     *
+     * @param array $arr
+     * @return void
+     * @throws Exception
      */
-    public function login($arr)
+    public function login(array $arr)
     {
         $arr = (object)$arr;
-        $user = $this->DB->query("Select * from user where userName='$arr->userName'", PDO::FETCH_OBJ);
+        $user = $this->DB->query("Select * from users where email='$arr->email'", \PDO::FETCH_OBJ);
         if ($user) {
             $user = $user->fetch();
             if ($user) {
                 if (password_verify($arr->password, $user->password)) {
-                    setcookie(Config::LOGIN_COOKIE_NAME, $user->id, time() + (86400 * 30));
+                    //todo session ile de giriş işlemi yap
+                    setcookie("tmyo_user_cookie", $user->id, time() + (86400 * 30));
                 } else throw new \Exception("Şifre Yanlış");
             } else throw new \Exception("Kullanıcı kayıtlı değil");
         } else throw new \Exception("Hiçbir kullanıcı kayıtlı değil");
