@@ -37,6 +37,6 @@ insert into
     users(username,password,email,role)
 values
     ("sametatabasch",
-     "$2y$10$al87tqEgN22ljr9isnRtVuGTva2j4HsFeVgx.Y1pMcltBjf7F5ImS",
+     "$2y$10$e5p.RhhIP1UgggIeE9jdc./haJfJcxhsqOD1hTC7FT2/aWMBVGezW",
      "sametatabasch@gmail.com",
      "admin");
