@@ -1,3 +1,10 @@
+<?php
+require_once __DIR__ . '/../autoload.php';
+
+use App\databaseController;
+
+$db = new databaseController()
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
