@@ -1,3 +1,5 @@
 <?php
-define("DB_user_name","");
-define("DB_user_password","");
+define("DB_USER","");
+define("DB_PASSWORD","");
+define("DB_HOST","");
+define("DB_NAME","");
