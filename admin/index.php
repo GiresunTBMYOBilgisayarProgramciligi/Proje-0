@@ -1,9 +1,11 @@
 <?php
+namespace App\Admin;
 require_once __DIR__ . '/../autoload.php';
 
-use App\databaseController;
+use App\userController;
 
-$db = new databaseController()
+$userController = new userController();
+$user = $userController->getUser(1);
 ?>
 <!DOCTYPE html>
 <!--

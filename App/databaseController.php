@@ -7,7 +7,7 @@ use PDOException;
 class databaseController
 {
 
-    public $pdo = null;
+    public $instance = null;
 
     public function __construct()
     {
@@ -17,9 +17,9 @@ class databaseController
         // PDO ile bağlantı oluştur
         try {
             $dsn = 'mysql:host=' . DB_HOST . ';dbname='.DB_NAME.';charset=utf8mb4';
-            $this->pdo = new PDO($dsn, DB_USER, DB_PASSWORD);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->pdo;
+            $this->instance = new PDO($dsn, DB_USER, DB_PASSWORD);
+            $this->instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->instance;
         } catch (PDOException $e) {
             die('Veritabanı bağlantı hatası: ' . $e->getMessage());
         }
