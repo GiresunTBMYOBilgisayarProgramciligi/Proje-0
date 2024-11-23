@@ -63,7 +63,7 @@
                 <a href="#">Şifremi unuttum</a>
             </p>
             <p class="mb-0">
-                <a href="#" class="text-center">Yeni üyelik oluştur</a>
+                <a href="/admin/register.php" class="text-center">Yeni üyelik oluştur</a>
             </p>
         </div>
         <!-- /.card-body -->
