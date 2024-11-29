@@ -6,7 +6,8 @@
     <title>AdminLTE 3 | Log in (v2)</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -15,6 +16,24 @@
     <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+<?php
+session_start();
+if (isset($_SESSION['errors'])) { ?>
+    <div class="callout callout-danger">
+        <h5>Lütfen Hataları düzeltiniz</h5>
+
+        <ul>
+            <?php
+            foreach ($_SESSION['errors'] as $error) {
+                echo "<li>$error</li>";
+            }
+            ?>
+        </ul>
+    </div>
+    <?php
+}
+unset($_SESSION['errors']);
+?>
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">

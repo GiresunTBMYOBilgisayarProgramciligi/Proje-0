@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Admin;
 session_start();
 require_once __DIR__ . '/../autoload.php';
@@ -18,19 +19,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case 'login':
             $userController = new userController();
             try {
+                $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+                if (!$email) throw new \Exception('Doğru bir mail adresi girmelisiniz.');
                 $userController->login([
                     'email' => $_POST['email'],
                     'password' => $_POST['password'],
                     "remember_me" => isset($_POST['remember_me'])
                 ]);
             } catch (\Exception $e) {
-                $errors[] = $e->getMessage();
+                $errors['login'] = $e->getMessage();
             }
 
             if (!count($errors) > 0)
                 header("location: /admin");
-            else
-                var_dump($errors);
+            else {
+                $_SESSION['errors'] = $errors;
+                header("location: /admin/login.php");
+                exit();
+            }
+
             break;
         case 'register':
             var_dump($_POST);
