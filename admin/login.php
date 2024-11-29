@@ -44,7 +44,7 @@ if ($userController->isLoggedIn()) {
 
                     <ul>
                         <?php
-                        foreach ($_SESSION['errors'] as $error) {
+                        foreach ($_SESSION['errors']['login'] as $error) {
                             echo "<li>$error</li>";
                         }
                         ?>

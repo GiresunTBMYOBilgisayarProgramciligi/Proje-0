@@ -1,3 +1,17 @@
+<?php
+namespace App\Admin;
+require_once __DIR__ . '/../autoload.php';
+
+use App\userController;
+
+session_start();
+$userController = new userController();
+
+if ($userController->isLoggedIn()) {
+    header("location: /admin/?p=profile");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +36,23 @@
             <a href="/" class="h1"><b>Tirebolu</b> MBMYO</a>
         </div>
         <div class="card-body">
+            <?php
+            if (isset($_SESSION['errors'])) { ?>
+                <div class="callout callout-danger">
+                    <h5>Lütfen Hataları düzeltiniz</h5>
+
+                    <ul>
+                        <?php
+                        foreach ($_SESSION['errors']['register'] as $error) {
+                            echo "<li>$error</li>";
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <?php
+            }
+            unset($_SESSION['errors']);
+            ?>
             <p class="login-box-msg">Yeni hesap oluştur</p>
 
             <form action="/admin/form_actions.php" method="post">

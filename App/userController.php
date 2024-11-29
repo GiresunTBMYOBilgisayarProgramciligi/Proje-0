@@ -5,6 +5,7 @@ namespace App;
 use App\databaseController;
 use Exception;
 use App\Config;
+
 class userController
 {
     private $DB;
@@ -42,12 +43,11 @@ class userController
      */
     public function getCurrentUser()
     {
-        $u=false;
+        $u = false;
         if (isset($_SESSION[Config::$SESSION_KEY])) {
-            $u=$this->getUser($_SESSION[Config::$SESSION_KEY]);
-        }
-        elseif (isset($_COOKIE[Config::$COOKIE_KEY])) {
-            $u=$this->getUser($_COOKIE[Config::$COOKIE_KEY]);
+            $u = $this->getUser($_SESSION[Config::$SESSION_KEY]);
+        } elseif (isset($_COOKIE[Config::$COOKIE_KEY])) {
+            $u = $this->getUser($_COOKIE[Config::$COOKIE_KEY]);
         }
         return $u;
     }
@@ -68,18 +68,23 @@ class userController
      */
     public function saveNewUser(User $newUser)
     {
-        $q = $this->DB->prepare("INSERT INTO user(userName, mail, password, name, lastName, createdDate) values  (:userName,:mail,:password,:name,:lastName,:createdDate)");
+        $q = $this->DB->prepare("
+            INSERT INTO users(
+                  email, password, name, lastname) 
+                values  (
+                    :email, :password, :name, :lastname)"
+        );
         if ($q) {
-            $newUser = (array)$newUser;
-            unset($newUser["db"]);
-            unset($newUser['id']);
-            $newUser["password"] = password_hash($newUser["password"], PASSWORD_DEFAULT);
-            $newUser["createdDate"] = date("Y.m.d H:i:s");
-            $q->execute($newUser);
+            $newUserData = array();
+            foreach ($newUser as $k => $v) {
+                if (!is_null($newUser->$k)) $newUserData[$k] = $newUser->$k;
+            }
+            $q->execute($newUserData);
             if ($q) {
-                return ['success' => 'Slide eklendi'];
+                header("Location:/admin/login.php");
+                exit();
             } else {
-                return ['error' => "Slide eklenemedi"];
+                throw new Exception("Kayıt Başarısız");
             }
         }
     }
@@ -157,9 +162,9 @@ class userController
             $user = $user->fetch();
             if ($user) {
                 if (password_verify($arr->password, $user->password)) {
-                    if (!$arr->remember_me){
+                    if (!$arr->remember_me) {
                         $_SESSION[Config::$SESSION_KEY] = $user->id;
-                    }else{
+                    } else {
                         setcookie(Config::$COOKIE_KEY, $user->id, time() + (86400 * 30));
                     }
                 } else throw new \Exception("Şifre Yanlış");

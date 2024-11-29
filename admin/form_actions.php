@@ -41,7 +41,7 @@ function handle_login()
             "remember_me" => isset($_POST['remember_me'])
         ]);
     } catch (\Exception $e) {
-        $errors['login'] = $e->getMessage();
+        $errors['login'][] = $e->getMessage();
     }
 
     if (!count($errors) > 0)
@@ -55,14 +55,14 @@ function handle_login()
 
 function handle_register()
 {
+    global $errors;
     var_dump($_POST);
     $new_user = new User();
     if (!isset($_POST['terms'])) {
-        $errors[] = ['terms' => "Koşullar kabul edilmelidir"];
+        $errors['register'][] = "Koşullar kabul edilmelidir";
     }
     if ($_POST['password'] != $_POST['password_confirm']) {
-        $errors[] = ['password' => "Parolalar uyuşmuyor"];
-        $errors[] = ['password_confirm' => "Parolalar uyuşmuyor"];
+        $errors['register'][] = "Parolalar uyuşmuyor";
 
     }
     //todo Kayıt işlemleri yapılacak
@@ -71,9 +71,24 @@ function handle_register()
     $new_user->lastname = $_POST['lastname'];
     $new_user->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     var_dump($new_user);
-    if (!count($errors) > 0)
+    if (!count($errors) > 0) {
         echo "";
-    //header("location: /admin/login.php");
-    else
-        var_dump($errors);
+        try {
+            $user_controller = new userController();
+            $user_controller->saveNewUser($new_user);
+        } catch (\Exception $e) {
+            if ($e->getCode() == 23000) {
+                $errors['register'][] = "Bu email adresi zaten kayıtlı";
+            } else
+                $errors['register'][] = $e->getMessage();
+            $_SESSION['errors'] = $errors;
+            header("location: /admin/register.php");
+            exit();
+        }
+
+    } else {
+        $_SESSION['errors'] = $errors;
+        header("location: /admin/register.php");
+        exit();
+    }
 }
