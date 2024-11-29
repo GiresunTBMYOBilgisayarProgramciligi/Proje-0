@@ -4,7 +4,7 @@ namespace App;
 
 use PDO;
 use PDOException;
-use Config;
+use App\Config;
 class databaseController
 {
 

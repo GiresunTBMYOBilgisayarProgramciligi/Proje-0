@@ -4,7 +4,7 @@ namespace App;
 
 use App\databaseController;
 use Exception;
-use Config;
+use App\Config;
 class userController
 {
     private $DB;
@@ -157,7 +157,6 @@ class userController
             $user = $user->fetch();
             if ($user) {
                 if (password_verify($arr->password, $user->password)) {
-                    var_dump($arr);
                     if (!$arr->remember_me){
                         $_SESSION[Config::$SESSION_KEY] = $user->id;
                     }else{

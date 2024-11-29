@@ -74,11 +74,10 @@
                 </li>
                 <!-- /Haber Menusü -->
                 <li class="nav-item">
-                    <a href="index.php?p=simple_link" class="nav-link <?= ($page == 'simple_link') ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="/admin/logout.php" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
+                            Çıkış yap
                         </p>
                     </a>
                 </li>
