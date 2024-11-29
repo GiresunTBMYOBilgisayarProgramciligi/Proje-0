@@ -4,7 +4,7 @@ namespace App;
 
 use App\databaseController;
 use Exception;
-
+use Config;
 class userController
 {
     private $DB;
@@ -41,13 +41,13 @@ class userController
      * @return User|false|null
      */
     public function getCurrentUser()
-    {//todo cookie ve session isimleri configden alınacak
+    {
         $u=false;
-        if (isset($_SESSION['tmyo_user_id'])) {
-            $u=$this->getUser($_SESSION["tmyo_user_id"]);
+        if (isset($_SESSION[Config::$SESSION_KEY])) {
+            $u=$this->getUser($_SESSION[Config::$SESSION_KEY]);
         }
-        elseif (isset($_COOKIE['tmyo_user_id'])) {
-            $u=$this->getUser($_COOKIE["tmyo_user_id"]);
+        elseif (isset($_COOKIE[Config::$COOKIE_KEY])) {
+            $u=$this->getUser($_COOKIE[Config::$COOKIE_KEY]);
         }
         return $u;
     }
@@ -137,8 +137,8 @@ class userController
      * @return bool
      */
     public function isLoggedIn()
-    {//todo cookie ve session isimleri configden alınacak
-        if (isset($_COOKIE["tmyo_user_id"]) || isset($_SESSION["tmyo_user_id"])) return true; else
+    {
+        if (isset($_COOKIE[Config::$SESSION_KEY]) || isset($_SESSION[Config::$SESSION_KEY])) return true; else
             return false;
     }
 
@@ -159,11 +159,9 @@ class userController
                 if (password_verify($arr->password, $user->password)) {
                     var_dump($arr);
                     if (!$arr->remember_me){
-                        //todo cookie ve session isimleri configden alınacak
-                        $_SESSION['tmyo_user_id'] = $user->id;
+                        $_SESSION[Config::$SESSION_KEY] = $user->id;
                     }else{
-                        //todo cookie ve session isimleri configden alınacak
-                        setcookie("tmyo_user_id", $user->id, time() + (86400 * 30));
+                        setcookie(Config::$COOKIE_KEY, $user->id, time() + (86400 * 30));
                     }
                 } else throw new \Exception("Şifre Yanlış");
             } else throw new \Exception("Kullanıcı kayıtlı değil");
