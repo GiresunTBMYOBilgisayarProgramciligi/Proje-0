@@ -3,11 +3,12 @@ namespace App\Admin;
 require_once __DIR__ . '/../autoload.php';
 
 use App\userController;
-
+session_start();
 $userController = new userController();
 
 if (!$userController->isLoggedIn()) {
     header("location: login.php");
+    exit();
 }else{
     $user=$userController->getCurrentUser();
 }

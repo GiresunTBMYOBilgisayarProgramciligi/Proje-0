@@ -12,7 +12,7 @@
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/admin/dist//css/adminlte.min.css">
+    <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="remember" name="remember">
+                            <input type="checkbox" id="remember_me" name="remember_me">
                             <label for="remember">
                                 Beni hatırla
                             </label>

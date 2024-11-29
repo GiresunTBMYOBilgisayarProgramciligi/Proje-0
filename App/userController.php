@@ -37,12 +37,19 @@ class userController
     }
 
     /**
-     * todo düzenlenecek
-     * @return mixed|null
+     *
+     * @return User|false|null
      */
     public function getCurrentUser()
-    {
-        return $this->getUser($_COOKIE["tmyo_user_cookie"]);
+    {//todo cookie ve session isimleri configden alınacak
+        $u=false;
+        if (isset($_SESSION['tmyo_user_id'])) {
+            $u=$this->getUser($_SESSION["tmyo_user_id"]);
+        }
+        elseif (isset($_COOKIE['tmyo_user_id'])) {
+            $u=$this->getUser($_COOKIE["tmyo_user_id"]);
+        }
+        return $u;
     }
 
     /**
@@ -126,12 +133,12 @@ class userController
         return ['success' => "Kullanıcı silindi"];
     }
 
-    /**todo düzenlenecek
-     * @return true|false
+    /**
+     * @return bool
      */
     public function isLoggedIn()
-    {
-        if (isset($_COOKIE["tmyo_user_cookie"])) return true; else
+    {//todo cookie ve session isimleri configden alınacak
+        if (isset($_COOKIE["tmyo_user_id"]) || isset($_SESSION["tmyo_user_id"])) return true; else
             return false;
     }
 
@@ -143,14 +150,21 @@ class userController
      */
     public function login(array $arr)
     {
+
         $arr = (object)$arr;
         $user = $this->DB->query("Select * from users where email='$arr->email'", \PDO::FETCH_OBJ);
         if ($user) {
             $user = $user->fetch();
             if ($user) {
                 if (password_verify($arr->password, $user->password)) {
-                    //todo session ile de giriş işlemi yap
-                    setcookie("tmyo_user_cookie", $user->id, time() + (86400 * 30));
+                    var_dump($arr);
+                    if (!$arr->remember_me){
+                        //todo cookie ve session isimleri configden alınacak
+                        $_SESSION['tmyo_user_id'] = $user->id;
+                    }else{
+                        //todo cookie ve session isimleri configden alınacak
+                        setcookie("tmyo_user_id", $user->id, time() + (86400 * 30));
+                    }
                 } else throw new \Exception("Şifre Yanlış");
             } else throw new \Exception("Kullanıcı kayıtlı değil");
         } else throw new \Exception("Hiçbir kullanıcı kayıtlı değil");
