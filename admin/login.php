@@ -1,3 +1,17 @@
+<?php
+namespace App\Admin;
+require_once __DIR__ . '/../autoload.php';
+
+use App\userController;
+
+session_start();
+$userController = new userController();
+
+if ($userController->isLoggedIn()) {
+    header("location: /admin");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,24 +30,6 @@
     <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
-<?php
-session_start();
-if (isset($_SESSION['errors'])) { ?>
-    <div class="callout callout-danger">
-        <h5>Lütfen Hataları düzeltiniz</h5>
-
-        <ul>
-            <?php
-            foreach ($_SESSION['errors'] as $error) {
-                echo "<li>$error</li>";
-            }
-            ?>
-        </ul>
-    </div>
-    <?php
-}
-unset($_SESSION['errors']);
-?>
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
@@ -41,7 +37,23 @@ unset($_SESSION['errors']);
             <a href="/" class="h1"><b>Tirebolu</b> MBMYO</a>
         </div>
         <div class="card-body">
+            <?php
+            if (isset($_SESSION['errors'])) { ?>
+                <div class="callout callout-danger">
+                    <h5>Lütfen Hataları düzeltiniz</h5>
 
+                    <ul>
+                        <?php
+                        foreach ($_SESSION['errors'] as $error) {
+                            echo "<li>$error</li>";
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <?php
+            }
+            unset($_SESSION['errors']);
+            ?>
 
             <form action="/admin/form_actions.php" method="post">
                 <input type="hidden" name="formName" value="login">
