@@ -30,7 +30,7 @@ class User
 
     public function getGravatarURL($size = 50)
     {
-        $default = $_SERVER["HTTP_REFERER"] . "images/faces/profile_icon.png";
+        $default = "/admin/dist/img/avatar.png";
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?d=" . urlencode($default) . "&s=" . $size;
     }
 }
