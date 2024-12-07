@@ -62,31 +62,37 @@ class userController
     }
 
     /**
-     * todo düzenlenecek
+     * Kullanıcı parolası hashlenmiş olarak gelmeli
      * @param User $newUser
-     * @return string[]|void
+     * @return void
+     * @throws Exception
      */
     public function saveNewUser(User $newUser)
     {
-        $q = $this->DB->prepare("
-            INSERT INTO users(
-                  email, password, name, lastname) 
-                values  (
-                    :email, :password, :name, :lastname)"
-        );
+        // User nesnesini diziye çevir ve null olmayan alanları filtrele
+        $userArray = array_filter((array)$newUser, function ($value) {
+            return !is_null($value);
+        });
+        // Dinamik sütun isimleri ve placeholder'lar oluştur
+        $columns = implode(", ", array_keys($userArray));
+        $placeholders = ":" . implode(", :", array_keys($userArray));
+
+        // SQL sorgusunu oluştur
+        $sql = "INSERT INTO users ($columns) VALUES ($placeholders)";
+        $q = $this->DB->prepare($sql);
         if ($q) {
-            $newUserData = array();
-            foreach ($newUser as $k => $v) {
-                if (!is_null($newUser->$k)) $newUserData[$k] = $newUser->$k;
-            }
-            $q->execute($newUserData);
-            if ($q) {
+            try {
+                // Parametreleri bağla ve sorguyu çalıştır
+                $q->execute($userArray);
+
+                // Başarılı ise yönlendir
                 header("Location:/admin/login.php");
                 exit();
-            } else {
-                throw new Exception("Kayıt Başarısız");
+            } catch (Exception $e) {
+                throw new Exception("Kayıt Başarısız: " . $e->getMessage());
             }
-        }
+
+        } else throw new Exception("Sorgu hazırlanamadı");
     }
 
     /**
