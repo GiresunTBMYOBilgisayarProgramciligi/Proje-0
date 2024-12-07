@@ -4,6 +4,7 @@ namespace App\Admin;
 session_start();
 require_once __DIR__ . '/../autoload.php';
 
+use App\Config;
 use App\User;
 use App\userController;
 
@@ -69,7 +70,7 @@ function handle_register()
     $new_user->email = $_POST['email'];
     $new_user->name = $_POST['name'];
     $new_user->lastname = $_POST['lastname'];
-    $new_user->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $new_user->password = password_hash($_POST['password'], Config::$PASSWORD_HASH_ALGO);
     var_dump($new_user);
     if (!count($errors) > 0) {
         echo "";
