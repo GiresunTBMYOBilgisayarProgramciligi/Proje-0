@@ -30,7 +30,7 @@ class User
 
     public function getGravatarURL($size = 50)
     {
-        $default = "/admin/dist/img/avatar.png";
+        $default = "identicon";
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?d=" . urlencode($default) . "&s=" . $size;
     }
 }
