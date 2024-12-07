@@ -57,7 +57,6 @@ function handle_login()
 function handle_register()
 {
     global $errors;
-    var_dump($_POST);
     $new_user = new User();
     if (!isset($_POST['terms'])) {
         $errors['register'][] = "Koşullar kabul edilmelidir";
@@ -71,7 +70,8 @@ function handle_register()
     $new_user->name = $_POST['name'];
     $new_user->lastname = $_POST['lastname'];
     $new_user->password = password_hash($_POST['password'], Config::$PASSWORD_HASH_ALGO);
-    var_dump($new_user);
+    $new_user->username = $_POST['username'];
+
     if (!count($errors) > 0) {
         echo "";
         try {

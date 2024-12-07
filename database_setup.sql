@@ -1,7 +1,7 @@
 USE tmyo_db;
 CREATE TABLE users (
                        id INT AUTO_INCREMENT PRIMARY KEY,
-                       username VARCHAR(50) UNIQUE ,
+                       username VARCHAR(50) UNIQUE NOT NULL,
                        password VARCHAR(255) NOT NULL,
                        name VARCHAR(30),
                        lastname VARCHAR(30),
