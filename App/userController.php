@@ -58,7 +58,7 @@ class userController
      */
     public function getUsers()
     {
-        return $this->DB->query("select * from user", PDO::FETCH_OBJ)->fetchAll();
+        return $this->DB->query("select * from users", \PDO::FETCH_ASSOC)->fetchAll();
     }
 
     /**
